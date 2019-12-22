@@ -1,18 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Member } from './member';
 
-const MEMBERS: Member[] = [
-  {id: 11, name: 'サンプル 11'},
-  {id: 12, name: 'サンプル 12'},
-  {id: 13, name: 'サンプル 13'},
-  {id: 14, name: 'サンプル 14'},
-  {id: 15, name: 'サンプル 15'},
-  {id: 16, name: 'サンプル 16'},
-  {id: 17, name: 'サンプル 17'},
-  {id: 18, name: 'サンプル 18'},
-  {id: 19, name: 'サンプル 19'},
-  {id: 20, name: 'サンプル 20'}
-]
+import { MemberService } from './member.service';
 
 @Component({
   selector: 'my-app',
@@ -74,14 +63,25 @@ const MEMBERS: Member[] = [
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+  providers: [ MemberService ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = '自社社員名簿';
-  members: Member[] = MEMBERS;
+  members: Member[];
   selectedMember: Member;
+
+  constructor(private memberService: MemberService) {}
+
+  ngOnInit(): void {
+    this.getMembers();
+  }
 
   onSelect(member: Member): void {
     this.selectedMember = member;
+  }
+
+  getMembers(): void {
+    this.memberService.getMembers().then(members => this.members = members);
   }
 }
