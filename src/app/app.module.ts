@@ -9,6 +9,8 @@ import { MembersComponent } from './members.component';
 import { MemberService } from './member.service';
 import { DashboardComponent} from './dashboard.component';
 
+import { MemberSearchComponent } from './member-search.component';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -26,7 +28,8 @@ import { InMemoryDataService } from './in-memory-data.service'
     AppComponent,
     MemberDetailComponent,
     MembersComponent,
-    DashboardComponent
+    DashboardComponent,
+    MemberSearchComponent
   ],
   bootstrap:    [
     AppComponent
